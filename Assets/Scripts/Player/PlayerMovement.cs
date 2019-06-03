@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] PlayerState state;
 
     [SerializeField, Range(0f,0.1f)] float minVelocityFoUpdateState;
-
+ 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
 
     void UpdatePlayerMovementState(){
         Vector3 velocity = agent.velocity;
-        Debug.Log(velocity);
+        
         // up
         if(velocity.z > minVelocityFoUpdateState && velocity.z > Mathf.Abs(velocity.x)){
             state = PlayerState.MovingUp;
