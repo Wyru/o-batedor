@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InteractSystem : MonoBehaviour
 {
+    public static bool running = true;
     public Camera cam;
 
     public Texture2D cursorNormal;
@@ -32,8 +33,11 @@ public class InteractSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         UpdateHover();
-        UpdateInput();
+        if(running){
+            UpdateInput();
+        }
         UpdateMouseCursor();
     }
 

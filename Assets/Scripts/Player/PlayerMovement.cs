@@ -7,6 +7,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
+    public static bool running = true;
     public Camera cam;
 
     NavMeshAgent agent;
@@ -28,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     }
     [SerializeField] PlayerState state;
 
-    [SerializeField, Range(0f,0.1f)] float minVelocityFoUpdateState;
+    [SerializeField, Range(0f,0.1f)] float minVelocityFoUpdateState = 0.1f;
  
     void Start()
     {
@@ -39,15 +40,17 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButton(0)){
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+        if(running){
+            if(Input.GetMouseButton(0)){
+                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
 
-            if(Physics.Raycast(ray, out hit)){
-                agent.SetDestination(hit.point);
+                if(Physics.Raycast(ray, out hit)){
+                    agent.SetDestination(hit.point);
+                }
             }
         }
-
+        
         UpdatePlayerMovementState();
     }
 
