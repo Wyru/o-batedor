@@ -5,12 +5,23 @@ namespace Database
 {
     [CreateAssetMenu(fileName = "Card Name", menuName = "Card/New Card", order = 0)]
     public class Card : ScriptableObject {
-        public Sprite background;
+        public Sprite cover;
         public Sprite front;
 
         public new string name;
+        [TextArea] 
+        public string description;
 
-        public int rareLevel;
+        public enum rarityLevel{
+            Common,
+            Rare,
+            SuperRare,
+            SecretRare,
+            UltimateRare
+
+        };
+
+        public rarityLevel rarity;
         
     }
 }
