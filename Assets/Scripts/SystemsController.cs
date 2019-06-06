@@ -10,4 +10,9 @@ public static class SystemsController
         InteractSystem.running = !b;
         PlayerMovement.running = !b;
     }
+
+    public static void RunningChoices(bool b){
+        InteractSystem.running = !b;
+        PlayerMovement.running = !b;
+    }
 }

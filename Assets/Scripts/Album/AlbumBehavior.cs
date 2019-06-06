@@ -56,6 +56,11 @@ namespace Album
                 return;
             
             if(open){
+
+                if(Input.GetMouseButtonDown(1)){
+                    CloseAlbum();
+                }
+
                 pointerEventData = new PointerEventData(eventSystem);
                 pointerEventData.position = Input.mousePosition;
                 List<RaycastResult> results = new List<RaycastResult>();
@@ -81,6 +86,7 @@ namespace Album
         }
 
         private void ShowCardDescription(){
+            m_animator.SetBool("CardInfo", false);
             m_animator.SetBool("CardInfo", true);
             cardImage.sprite = lastCard.front;
             cardName.SetText(lastCard.name);

@@ -50,6 +50,9 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+        else{
+            agent.SetDestination(transform.position);
+        }
         
         UpdatePlayerMovementState();
     }

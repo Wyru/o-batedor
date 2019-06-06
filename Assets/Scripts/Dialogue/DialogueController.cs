@@ -5,9 +5,12 @@ using UnityEngine;
 public class DialogueController : MonoBehaviour
 {
     static DialogueController _instance;
-    public static DialogueController Instance{
-        get{
-            if(_instance == null){
+    public static DialogueController Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
                 _instance = FindObjectOfType<DialogueController>();
             }
             return _instance;
@@ -18,7 +21,7 @@ public class DialogueController : MonoBehaviour
 
     public Transform canvas;
 
-    public  Camera cam;
+    public Camera cam;
 
     public Sentence[] sentences;
 
@@ -33,37 +36,52 @@ public class DialogueController : MonoBehaviour
 
     Sentence sentence;
 
+    Dialogue currentDialogue;
+
     void Update()
     {
-        if(running){
-            if(currentTypewriter == null ){
-                if(currentSentence < sentences.Length){
+        if (running)
+        {
+            if (currentTypewriter == null)
+            {
+                if (currentSentence < sentences.Length)
+                {
                     currentTypewriter = Instantiate(typewriterPrefab, canvas).GetComponent<Typewriter>();
                     sentence = sentences[currentSentence++];
-                    
+
                     currentTypewriter.Setup(sentence.text, sentence.Speed, sentence.MaxPitch, sentence.MinPitch, sentence.Voice);
                 }
-                else{
+                else
+                {
                     running = false;
                     SystemsController.RunningDialogue(running);
+                    if (currentDialogue.OnEndDialogue != null)
+                        currentDialogue.OnEndDialogue.Invoke();
                 }
             }
-            else{
+            else
+            {
 
-                if( sentence.origin != null){
-                        currentTypewriter.transform.position = cam.WorldToScreenPoint(sentence.origin.position);
+                if (sentence.origin != null)
+                {
+                    currentTypewriter.transform.position = cam.WorldToScreenPoint(sentence.origin.position);
                 }
-                else{
+                else
+                {
                     // system message
                 }
-                if(currentTypewriter.Done){
-                    if(Input.GetMouseButtonDown(0)){
+                if (currentTypewriter.Done)
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
                         Destroy(currentTypewriter.gameObject);
                         currentTypewriter = null;
                     }
                 }
-                else{
-                    if(Input.GetMouseButtonDown(0)){
+                else
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
                         currentTypewriter.JumpToEnd();
                     }
                 }
@@ -71,10 +89,17 @@ public class DialogueController : MonoBehaviour
         }
     }
 
-    public void StartDialogue(Sentence[] sentences){
-        this.sentences = sentences;
+    public void StartDialogue(Dialogue dialogue)
+    {
+        this.currentDialogue = dialogue;
+        this.sentences = dialogue.sentences;
         currentSentence = 0;
         running = true;
+
+        if (dialogue.OnStartDialogue != null)
+            dialogue.OnStartDialogue.Invoke();
+
         SystemsController.RunningDialogue(running);
+
     }
 }
