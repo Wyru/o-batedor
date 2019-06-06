@@ -33,12 +33,12 @@ public class InteractSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         UpdateHover();
         if(running){
             UpdateInput();
+            // To Do colocar em outro script
+            UpdateMouseCursor();
         }
-        UpdateMouseCursor();
     }
 
     void UpdateHover(){

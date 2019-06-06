@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   voice: {fileID: 8300000, guid: 2029c8b60d6a509488ad60ff94426d54, type: 3}
-  maxPitch: 1.57
+  maxPitch: 1.48
   minPitch: 1.18
   speed: 0.93

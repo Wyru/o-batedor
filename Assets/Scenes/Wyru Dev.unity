@@ -120,6 +120,54 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 12c54f97a0af95843a8cd47f0c0f7d26, type: 2}
+--- !u!1 &20930363
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 20930364}
+  - component: {fileID: 20930365}
+  m_Layer: 0
+  m_Name: ChoiceController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &20930364
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20930363}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1141844505}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &20930365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20930363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f1f781689ce8a94895db752ee97b9ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 439704193}
+  choiceContainerPrefab: {fileID: 7084356029855398708, guid: dcd7e4063fc309d418a6619a9fccbb9c,
+    type: 3}
+  choicePrefab: {fileID: 1799467564492606136, guid: 6f43b5498a0de51469914bbd5e3b4512,
+    type: 3}
 --- !u!1 &63077626
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,6 +180,7 @@ GameObject:
   - component: {fileID: 63077627}
   - component: {fileID: 63077630}
   - component: {fileID: 63077628}
+  - component: {fileID: 63077631}
   m_Layer: 0
   m_Name: Npc
   m_TagString: Untagged
@@ -161,30 +210,47 @@ MonoBehaviour:
   m_GameObject: {fileID: 63077626}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f58ff6edcbc19c46b848160d12b69a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 72a5e2eece14df14d9595e196f531634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sentences:
-  - text: Hey, hey, hey
-    characterVoice: {fileID: 11400000, guid: c896b7a5ca7669c43b16dd3393f7dee7, type: 2}
-    speed: -1
-    origin: {fileID: 1835642019}
-  - text: Your lipstick stains on the front lobe of my left side brains
-    characterVoice: {fileID: 11400000, guid: c896b7a5ca7669c43b16dd3393f7dee7, type: 2}
-    speed: -1
-    origin: {fileID: 1835642019}
-  - text: I knew I wouldn't forget you, and so I let you go and blow my mind
-    characterVoice: {fileID: 11400000, guid: c896b7a5ca7669c43b16dd3393f7dee7, type: 2}
-    speed: -1
-    origin: {fileID: 1835642019}
-  - text: Your sweet moonbeam, the smell of you in every single dream, I dream
-    characterVoice: {fileID: 11400000, guid: c839d37d8b9e55644b52a763aab67fee, type: 2}
-    speed: -1
-    origin: {fileID: 454375109}
-  - text: I knew when we collided, you're the one I have decided who's one of my kind
-    characterVoice: {fileID: 11400000, guid: c839d37d8b9e55644b52a763aab67fee, type: 2}
-    speed: -1
-    origin: {fileID: 454375109}
+  currentIndex: 0
+  stages:
+  - events:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 592397661}
+          m_MethodName: Play
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    action: 1
+    customStage: 0
+  - events:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1471476517}
+          m_MethodName: Play
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    action: 0
+    customStage: 0
 --- !u!4 &63077629
 Transform:
   m_ObjectHideFlags: 0
@@ -198,6 +264,8 @@ Transform:
   m_Children:
   - {fileID: 2044807504}
   - {fileID: 1835642019}
+  - {fileID: 592397662}
+  - {fileID: 1471476518}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -222,7 +290,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 63077628}
-        m_MethodName: Play
+        m_MethodName: PlayEvents
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -232,6 +300,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &63077631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63077626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8840133f28a569e4ab7531894e1eac87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cards:
+  - {fileID: 11400000, guid: d42ea2c43e1516649bd928c105412e88, type: 2}
+  - {fileID: 11400000, guid: 2e37c1d5a964160439a33a7393d617bf, type: 2}
+  - {fileID: 11400000, guid: b1a0b90d42fa88c46a0fab37f4558302, type: 2}
+  difficult: 0
+  OnPlayerWin:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnPlayerLost:
+    m_PersistentCalls:
+      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &235573660
@@ -531,6 +626,72 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1587360659}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &592397660
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 592397662}
+  - component: {fileID: 592397661}
+  m_Layer: 0
+  m_Name: Dialogue01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &592397661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592397660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f58ff6edcbc19c46b848160d12b69a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sentences:
+  - text: "Ah eu n\xE3o acredito que hoje \xE9 realmente o \xFAltimo dia de aula"
+    characterVoice: {fileID: 11400000, guid: c896b7a5ca7669c43b16dd3393f7dee7, type: 2}
+    speed: -1
+    origin: {fileID: 1835642019}
+  - text: "Por mais que eu queria f\xE9rias.."
+    characterVoice: {fileID: 11400000, guid: c896b7a5ca7669c43b16dd3393f7dee7, type: 2}
+    speed: -1
+    origin: {fileID: 1835642019}
+  - text: Vou sentir saudade de vir aqui todos os dias kkkkk
+    characterVoice: {fileID: 11400000, guid: c896b7a5ca7669c43b16dd3393f7dee7, type: 2}
+    speed: -1
+    origin: {fileID: 1835642019}
+  OnStartDialogue:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnEndDialogue:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!4 &592397662
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592397660}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 63077629}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &688352461
 GameObject:
@@ -890,6 +1051,7 @@ Transform:
   - {fileID: 1532888025}
   - {fileID: 748552121}
   - {fileID: 235573661}
+  - {fileID: 20930364}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -984,6 +1146,124 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1471476516
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1471476518}
+  - component: {fileID: 1471476517}
+  - component: {fileID: 1471476519}
+  m_Layer: 0
+  m_Name: Dialogue02
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1471476517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471476516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f58ff6edcbc19c46b848160d12b69a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sentences:
+  - text: "E ai, bora bater umas cartinhas? Tenho certeza que voc\xEA n\xE3o vai conseguir
+      meu Mago Negro!"
+    characterVoice: {fileID: 11400000, guid: c896b7a5ca7669c43b16dd3393f7dee7, type: 2}
+    speed: -1
+    origin: {fileID: 1835642019}
+  OnStartDialogue:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnEndDialogue:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1471476519}
+        m_MethodName: ShowOptions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!4 &1471476518
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471476516}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 63077629}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1471476519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471476516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ab444aaf4128474b972cad01ca9bfe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  choices:
+  - text: "Cai no p\xE1u otaku"
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1471476519}
+          m_MethodName: TestA
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  - text: "Acho melhor n\xE3o :/"
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1471476519}
+          m_MethodName: TestB
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
 --- !u!1 &1532888022
 GameObject:
   m_ObjectHideFlags: 0
