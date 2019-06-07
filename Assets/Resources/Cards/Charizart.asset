@@ -17,4 +17,4 @@ MonoBehaviour:
   name: Charizart
   description: "Este card ganha 300 de ATK para cada \"Mago Negro\" ou \"Mago do Caos
     das Trevas\" no Cemit\xE9rio de qualquer duelista."
-  rarity: 2
+  rarity: 0

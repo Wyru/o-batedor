@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: d1c3109bdb54ad54c8a2b2838528e640
+  - enabled: 1
+    path: Assets/Scenes/Wyru Dev.unity
+    guid: b94eaa21544f5f142945ec785033e840
+  - enabled: 1
+    path: Assets/Scenes/Wyru Arena.unity
+    guid: b8f12b642276ef046a85edcb1e49bba3
   m_configObjects: {}

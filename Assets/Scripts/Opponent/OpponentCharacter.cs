@@ -20,7 +20,7 @@ public class OpponentCharacter : MonoBehaviour
 
 
     public void Chase(){
-        // chama o código para carregar a cena de batalha
+        CardKnock.Instance.StartMatch(cards, difficult);
     }
 
 }
