@@ -18,9 +18,8 @@ public class OpponentCharacter : MonoBehaviour
     public UnityEvent OnPlayerWin;
     public UnityEvent OnPlayerLost;
 
-
     public void Chase(){
-        CardKnock.Instance.StartMatch(cards, difficult);
+        CardKnock.CardKnockController.Instance.StartMatch(cards, difficult);
     }
 
 }
