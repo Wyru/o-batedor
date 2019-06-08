@@ -11,8 +11,10 @@ namespace CardKnock
     {
         static GambleController _instance;
 
-        public static GambleController Instance{
-            get{
+        public static GambleController Instance
+        {
+            get
+            {
                 return _instance;
             }
         }
@@ -56,7 +58,7 @@ namespace CardKnock
 
 
 
-        public Button endGambling; 
+        public Button endGambling;
 
         enum States
         {
@@ -78,6 +80,9 @@ namespace CardKnock
 
         public Animator gambleAnimator;
 
+        public bool playerGambled;
+        public bool opponentGambled;
+
         private void Start()
         {
             _instance = this;
@@ -85,19 +90,20 @@ namespace CardKnock
         }
 
 
-        public void StartGamble(bool playerStart){
+        public void StartGamble(bool playerStart)
+        {
             gambleAnimator.gameObject.SetActive(true);
             playerStarted = playerStart;
             playerCardsInBet = new List<Database.Card>();
             opponentCardsInBet = new List<Database.Card>();
             playerCardsInBetGUI = new List<CardGamble>();
             opponentCardsInBetGUI = new List<CardGamble>();
-            
+
             playerCardsInHand = new List<Database.Card>(cardKnock.playerCards);
             opponentCardsInHand = new List<Database.Card>(cardKnock.opponentCards);
 
-            playerCardsInHand.Sort((card_a,card_b)=>card_a.name.CompareTo(card_b.name));
-            opponentCardsInHand.Sort((card_a,card_b)=>card_a.name.CompareTo(card_b.name));
+            playerCardsInHand.Sort((card_a, card_b) => card_a.name.CompareTo(card_b.name));
+            opponentCardsInHand.Sort((card_a, card_b) => card_a.name.CompareTo(card_b.name));
 
             playerCardsInHandGUI = new List<CardGamble>();
             opponentCardsInHandGUI = new List<CardGamble>();
@@ -105,22 +111,24 @@ namespace CardKnock
 
             foreach (Database.Card card in playerCardsInHand)
             {
-                CardGamble cardGamble = Instantiate(cardGamblePrefab,playerHand.transform).GetComponent<CardGamble>();
+                CardGamble cardGamble = Instantiate(cardGamblePrefab, playerHand.transform).GetComponent<CardGamble>();
                 cardGamble.Setup(card, false);
                 playerCardsInHandGUI.Add(cardGamble);
             }
 
             foreach (Database.Card card in opponentCardsInHand)
             {
-                CardGamble cardGamble = Instantiate(opponentCardGamblePrefab,opponentHand.transform).GetComponent<CardGamble>();
+                CardGamble cardGamble = Instantiate(opponentCardGamblePrefab, opponentHand.transform).GetComponent<CardGamble>();
                 cardGamble.Setup(card, true);
                 opponentCardsInHandGUI.Add(cardGamble);
             }
 
-            if(playerStarted){
+            if (playerStarted)
+            {
                 state = States.PlayerGambling;
             }
-            else{
+            else
+            {
                 state = States.OpponentGambling;
             }
 
@@ -128,7 +136,8 @@ namespace CardKnock
 
 
 
-        public void ShowCardInfo(Database.Card card){
+        public void ShowCardInfo(Database.Card card)
+        {
             gambleAnimator.SetBool("cardInfo", true);
             cardInfoImage.sprite = card.front;
             cardInfoName.SetText(card.name);
@@ -137,17 +146,20 @@ namespace CardKnock
 
         }
 
-        public void HideCardInfo(){
+        public void HideCardInfo()
+        {
             gambleAnimator.SetBool("cardInfo", false);
         }
 
-        public void PlayerBetCard(Database.Card card){
+        public void PlayerBetCard(Database.Card card)
+        {
             CardGamble cardGamble;
             playerBetValue += (int)card.rarity + 1;
             playerBetValueGUI.SetText(playerBetValue.ToString());
             for (int i = 0; i < playerCardsInHandGUI.Count; i++)
             {
-                if(card == playerCardsInHandGUI[i].card){
+                if (card == playerCardsInHandGUI[i].card)
+                {
                     cardGamble = playerCardsInHandGUI[i];
                     playerCardsInHandGUI.Remove(cardGamble);
                     cardGamble.transform.SetParent(playerBet.transform);
@@ -157,13 +169,15 @@ namespace CardKnock
             }
         }
 
-        public void PlayerUnBetCard(Database.Card card){
+        public void PlayerUnBetCard(Database.Card card)
+        {
             CardGamble cardGamble;
-            playerBetValue += ((int)card.rarity + 1)*-1;
+            playerBetValue += ((int)card.rarity + 1) * -1;
             playerBetValueGUI.SetText(playerBetValue.ToString());
             for (int i = 0; i < playerCardsInBetGUI.Count; i++)
             {
-                if(card == playerCardsInBetGUI[i].card){
+                if (card == playerCardsInBetGUI[i].card)
+                {
                     cardGamble = playerCardsInBetGUI[i];
                     playerCardsInBetGUI.Remove(cardGamble);
                     cardGamble.transform.SetParent(playerHand.transform);
@@ -174,43 +188,58 @@ namespace CardKnock
         }
 
 
-        private void Update() {
+        private void Update()
+        {
             switch (state)
             {
                 case States.Start:
 
-                break;
+                    break;
 
                 case States.PlayerGambling:
                     PlayerGambling();
-                break;
+                    break;
 
                 case States.OpponentGambling:
                     OpponentGambling();
 
-                break;
+                    break;
 
                 case States.EndGambling:
 
 
-                break;
-                
+                    break;
             }
         }
 
 
-        public void EndGambling(){
-            Debug.Log("Apostado");
+        public void EndGambling()
+        {
+            if(state == States.PlayerGambling){
+                playerGambled = true;
+                if(!opponentGambled){
+                    state = States.OpponentGambling;
+                }
+                else{
+                    state = States.EndGambling;
 
-            if(playerStarted)
-                state = States.OpponentGambling;
-            else
-                state = States.EndGambling;
+                }
+            }
+            else if(state == States.OpponentGambling){
+                opponentGambled = true;
+                if(!playerGambled){
+                    state = States.PlayerGambling;
+                }
+                else{
+                    state = States.EndGambling;
+                }
+            }
         }
 
-
-        void PlayerGambling(){
-            if(playerStarted){
+        void PlayerGambling()
+        {
+            if (playerStarted)
+            {
                 endGambling.interactable = playerBetValue > 0;
             }
             else
@@ -220,21 +249,42 @@ namespace CardKnock
         }
 
 
-        void OpponentGambling(){
-            List<Database.Card> cards =  new List<Database.Card>();
-            if(playerStarted){
-                if(CardKnock.CardKnockController.Instance.difficult == OpponentCharacter.Level.Easy){
-                    for (int i = 0; opponentBetValue < playerBetValue; i++)
+        void OpponentGambling()
+        {
+            if (playerStarted)
+            {
+                endGambling.interactable = playerBetValue > 0;
+            }
+            else
+            {
+                endGambling.interactable = playerBetValue >= opponentBetValue;
+            }
+
+            List<Database.Card> cards = new List<Database.Card>();
+
+            if (playerStarted)
+            {
+                if (CardKnock.CardKnockController.Instance.difficult == OpponentCharacter.Level.Easy)
+                {
+                    for (int i = 0; i < opponentCardsInHandGUI.Count; i++)
                     {
                         cards.Add(opponentCardsInHandGUI[i].card);
+
                         opponentBetValue += ((int)opponentCardsInHandGUI[i].card.rarity + 1);
+
+                        if (opponentBetValue < playerBetValue)
+                        {
+                            break;
+                        }
                     }
                 }
             }
             else
             {
-                if(CardKnock.CardKnockController.Instance.difficult == OpponentCharacter.Level.Easy){
-                    for (int i = 0; i < 2; i++)
+                if (CardKnock.CardKnockController.Instance.difficult == OpponentCharacter.Level.Easy)
+                {
+
+                    for (int i = 0; i < 2 && i < opponentCardsInHandGUI.Count; i++)
                     {
                         cards.Add(opponentCardsInHandGUI[i].card);
                         opponentBetValue += ((int)opponentCardsInHandGUI[i].card.rarity + 1);
@@ -247,20 +297,26 @@ namespace CardKnock
                 OpponentBetCard(card);
             }
 
+            opponentBetValueGUI.SetText(opponentBetValue.ToString());
+
+            EndGambling();
+
         }
 
 
-    public void OpponentBetCard(Database.Card card){
+        public void OpponentBetCard(Database.Card card)
+        {
             CardGamble cardGamble;
-            opponentBetValue += (int)card.rarity + 1;
-            opponentBetValueGUI.SetText(opponentBetValue.ToString());
+
             for (int i = 0; i < opponentCardsInHandGUI.Count; i++)
             {
-                if(card == opponentCardsInHandGUI[i].card){
+                if (card == opponentCardsInHandGUI[i].card)
+                {
                     cardGamble = opponentCardsInHandGUI[i];
                     opponentCardsInHandGUI.Remove(cardGamble);
                     cardGamble.transform.SetParent(opponentBet.transform);
                     opponentCardsInBetGUI.Add(cardGamble);
+                    cardGamble.Show();
                     break;
                 }
             }

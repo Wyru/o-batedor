@@ -61,5 +61,10 @@ namespace CardKnock
             }
         }
 
+        public void Show(){
+            GetComponent<Image>().sprite = card.front;
+            isInHand = false;
+        }
+
     }
 }

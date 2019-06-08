@@ -136,7 +136,7 @@ namespace CardKnock
         {
             if (jokenpoController.finished)
             {
-                // GambleController.Instance.StartGamble(jokenpoController.playerHasWin);
+                GambleController.Instance.StartGamble(jokenpoController.playerHasWin);
                 state = States.Gambling;
                 
             }
