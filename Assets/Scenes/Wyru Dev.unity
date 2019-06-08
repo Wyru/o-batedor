@@ -4667,6 +4667,7 @@ MonoBehaviour:
   playerBetValueGUI: {fileID: 344715108}
   opponentBetValueGUI: {fileID: 819893241}
   endGambling: {fileID: 378538218}
+  state: 0
   cardInfoImage: {fileID: 1673732092}
   cardInfoName: {fileID: 1579584031}
   cardInfoDescription: {fileID: 1613145615}
@@ -4674,6 +4675,8 @@ MonoBehaviour:
   gambleAnimator: {fileID: 530945138}
   playerGambled: 0
   opponentGambled: 0
+  finished: 0
+  gameEnded: 0
 --- !u!1 &1234254467
 GameObject:
   m_ObjectHideFlags: 0
@@ -4840,6 +4843,7 @@ MonoBehaviour:
   transitionTime: 0.97
   changeCamTime: 0.63
   jokenpoController: {fileID: 1234254469}
+  gambleController: {fileID: 1229066571}
   playerCards: []
   opponentCards: []
   difficult: 0

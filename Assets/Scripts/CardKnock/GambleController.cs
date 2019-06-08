@@ -70,7 +70,7 @@ namespace CardKnock
         }
 
 
-        States state;
+        [SerializeField] States state;
 
 
         public Image cardInfoImage;
@@ -82,6 +82,11 @@ namespace CardKnock
 
         public bool playerGambled;
         public bool opponentGambled;
+
+
+        public bool finished;
+
+        public bool gameEnded;
 
         private void Start()
         {
@@ -98,6 +103,7 @@ namespace CardKnock
             opponentCardsInBet = new List<Database.Card>();
             playerCardsInBetGUI = new List<CardGamble>();
             opponentCardsInBetGUI = new List<CardGamble>();
+            
 
             playerCardsInHand = new List<Database.Card>(cardKnock.playerCards);
             opponentCardsInHand = new List<Database.Card>(cardKnock.opponentCards);
@@ -131,6 +137,10 @@ namespace CardKnock
             {
                 state = States.OpponentGambling;
             }
+            
+            gameEnded = false;
+            finished = false;
+
 
         }
 
@@ -190,6 +200,11 @@ namespace CardKnock
 
         private void Update()
         {
+            if (finished)
+            {
+                return;
+            }
+
             switch (state)
             {
                 case States.Start:
@@ -207,7 +222,15 @@ namespace CardKnock
 
                 case States.EndGambling:
 
-
+                    if(!gambleAnimator.GetCurrentAnimatorStateInfo(0).IsName("Out")){
+                    }
+                    else if(gambleAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1){
+                        
+                    }
+                    else{
+                        finished = true;
+                        state = States.Nothing;
+                    }
                     break;
             }
         }
@@ -215,23 +238,32 @@ namespace CardKnock
 
         public void EndGambling()
         {
-            if(state == States.PlayerGambling){
+            if (state == States.PlayerGambling)
+            {
+
                 playerGambled = true;
-                if(!opponentGambled){
+
+                if (!opponentGambled)
+                {
                     state = States.OpponentGambling;
                 }
-                else{
+                else
+                {
                     state = States.EndGambling;
-
+                    gambleAnimator.GetCurrentAnimatorStateInfo(0).IsName("Out");
                 }
             }
-            else if(state == States.OpponentGambling){
+            else if (state == States.OpponentGambling)
+            {
                 opponentGambled = true;
-                if(!playerGambled){
+                if (!playerGambled)
+                {
                     state = States.PlayerGambling;
                 }
-                else{
+                else
+                {
                     state = States.EndGambling;
+                    gambleAnimator.GetCurrentAnimatorStateInfo(0).IsName("Out");
                 }
             }
         }
@@ -272,7 +304,7 @@ namespace CardKnock
 
                         opponentBetValue += ((int)opponentCardsInHandGUI[i].card.rarity + 1);
 
-                        if (opponentBetValue < playerBetValue)
+                        if (opponentBetValue >= playerBetValue)
                         {
                             break;
                         }

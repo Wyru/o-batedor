@@ -37,13 +37,14 @@ namespace CardKnock
 
         public void OnClick()
         {
-            if (isInHand)
-                GambleController.Instance.PlayerBetCard(card);
-            else
-                GambleController.Instance.PlayerUnBetCard(card);
+            if(!GambleController.Instance.finished){
+                if (isInHand)
+                    GambleController.Instance.PlayerBetCard(card);
+                else
+                    GambleController.Instance.PlayerUnBetCard(card);
 
-            isInHand = !isInHand;
-
+                isInHand = !isInHand;
+            }
         }
 
 

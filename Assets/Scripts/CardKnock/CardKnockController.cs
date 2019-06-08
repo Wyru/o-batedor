@@ -31,6 +31,7 @@ namespace CardKnock
         public float changeCamTime;
 
         public JokenpoController jokenpoController;
+        public GambleController gambleController;
 
         bool camChanged;
 
@@ -111,7 +112,7 @@ namespace CardKnock
                     break;
 
                 case States.Gambling:
-
+                    UpdateGambling();
                     break;
 
 
@@ -145,9 +146,11 @@ namespace CardKnock
 
         void UpdateGambling()
         {
-
+            if (gambleController.finished)
+            {
+                Debug.Log("Fim gamble");
+            }
         }
-
 
     }
 }
