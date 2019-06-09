@@ -115,7 +115,6 @@ namespace CardKnock
                     UpdateGambling();
                     break;
 
-
                 case States.PlayerTurn:
 
                     break;
