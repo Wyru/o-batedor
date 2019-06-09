@@ -148,7 +148,13 @@ namespace CardKnock
         {
             if (gambleController.finished)
             {
-                Debug.Log("Fim gamble");
+                GambleController.Instance.Desactive();
+                if(jokenpoController.playerHasWin){
+                    state = States.PlayerTurn;
+                }
+                else{
+                    state = States.OpponentTurn;
+                }
             }
         }
 

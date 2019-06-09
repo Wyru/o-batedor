@@ -222,15 +222,7 @@ namespace CardKnock
 
                 case States.EndGambling:
 
-                    if(!gambleAnimator.GetCurrentAnimatorStateInfo(0).IsName("Out")){
-                    }
-                    else if(gambleAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1){
-                        
-                    }
-                    else{
-                        finished = true;
-                        state = States.Nothing;
-                    }
+            
                     break;
             }
         }
@@ -250,7 +242,7 @@ namespace CardKnock
                 else
                 {
                     state = States.EndGambling;
-                    gambleAnimator.GetCurrentAnimatorStateInfo(0).IsName("Out");
+                    gambleAnimator.SetTrigger("Out");
                 }
             }
             else if (state == States.OpponentGambling)
@@ -263,7 +255,7 @@ namespace CardKnock
                 else
                 {
                     state = States.EndGambling;
-                    gambleAnimator.GetCurrentAnimatorStateInfo(0).IsName("Out");
+                    gambleAnimator.SetTrigger("Out");
                 }
             }
         }
@@ -352,6 +344,14 @@ namespace CardKnock
                     break;
                 }
             }
+        }
+        public void Desactive(){
+            gambleAnimator.gameObject.SetActive(false);
+        }
+
+        public void OutAnimationEnd(){
+            finished = true;
+            state = States.Nothing;
         }
     }
 }
