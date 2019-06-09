@@ -10,7 +10,8 @@ namespace CardKnock
 
     public class CardGamble : MonoBehaviour
     {
-
+        public AudioSource audioSource;
+        public AudioClip Sound;
         public TextMeshProUGUI cost;
         public Database.Card card;
 
@@ -44,6 +45,9 @@ namespace CardKnock
                     GambleController.Instance.PlayerUnBetCard(card);
 
                 isInHand = !isInHand;
+                if(audioSource != null && Sound != null){
+                    audioSource.PlayOneShot(Sound);
+                }
             }
         }
 

@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 public class HandBehaviour : MonoBehaviour
 {
+    public AudioSource audioSource;
+    public AudioClip slap;
     public Camera cam;
 
     public enum States
@@ -229,6 +231,7 @@ public class HandBehaviour : MonoBehaviour
             forceModifier = forceModifierCurve.Evaluate(powerGauge.value);
             m_Animator.SetFloat("SpeedMultiplier", 1 + speedUp * powerGauge.value);
             m_Animator.SetTrigger("Hit");
+            
         }
 
     }
@@ -304,6 +307,10 @@ public class HandBehaviour : MonoBehaviour
 
     private void TryFlipCards()
     {
+        if(audioSource != null && slap != null){
+            audioSource.PlayOneShot(slap);
+        }
+        
         foreach (GameObject card in cards)
         {
             Vector3 force = card.transform.forward * -1;

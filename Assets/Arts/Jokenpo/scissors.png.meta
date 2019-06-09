@@ -1,16 +1,7 @@
 fileFormatVersion: 2
-guid: 1f2a3e1b39737834b911da6bc0d2ebd7
+guid: f801f5e7a198dd548ac82970072f54e6
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -5500720145951056006
-    second: rock-scissors-paper_0
-  - first:
-      213: 1325060475357740603
-    second: rock-scissors-paper_1
-  - first:
-      213: 8905017626405273727
-    second: rock-scissors-paper_2
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -49,7 +40,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -135,74 +126,11 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: rock-scissors-paper_0
-      rect:
-        serializedVersion: 2
-        x: 33
-        y: 3
-        width: 105
-        height: 119
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fba744649b9a36f4782dd8fca6ff1d62
-      internalID: -5500720145951056006
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rock-scissors-paper_1
-      rect:
-        serializedVersion: 2
-        x: 175
-        y: 1
-        width: 114
-        height: 167
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1a91b7336dec059489556c17b612f9de
-      internalID: 1325060475357740603
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rock-scissors-paper_2
-      rect:
-        serializedVersion: 2
-        x: 329
-        y: 2
-        width: 113
-        height: 168
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 74b511973488fa84d8a3d22261163b47
-      internalID: 8905017626405273727
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 454122d84f33d94428c314a707e3d34c
+    spriteID: 5d737a06e626a7a4dbbd1e9617edb57a
     internalID: 0
     vertices: []
     indices: 
