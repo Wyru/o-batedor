@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Database;
 public class PlayerCards : MonoBehaviour {
-    List<Card> list;
+    public List<Card> list;
 
     public List<Card> List{
         get{

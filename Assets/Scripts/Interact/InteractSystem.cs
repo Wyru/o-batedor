@@ -47,10 +47,8 @@ public class InteractSystem : MonoBehaviour
 
         if(Physics.Raycast(ray, out hit)){
             hover = hit.transform.GetComponent<InteractiveObject>();
-            
         }
     }
-
 
     void UpdateInput(){
         if(Input.GetMouseButtonDown(0)){

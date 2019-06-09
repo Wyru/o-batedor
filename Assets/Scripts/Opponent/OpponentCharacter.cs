@@ -15,12 +15,17 @@ public class OpponentCharacter : MonoBehaviour
         Expert
     }
     public Level difficult;
-    public UnityEvent OnPlayerWin;
-    public UnityEvent OnPlayerLost;
-
+    public UnityEvent OnNoCards;
 
     public void Chase(){
-        // chama o código para carregar a cena de batalha
+        CardKnock.CardKnockController.Instance.StartMatch(cards, this);
+    }
+
+
+    public void PlayerWin(){
+        if(OnNoCards != null){
+            OnNoCards.Invoke();
+        }
     }
 
 }
