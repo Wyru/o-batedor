@@ -12,16 +12,21 @@ public class CardBehavior : MonoBehaviour
         m_Rigidbody = GetComponent<Rigidbody>();
     }
 
+    public LayerMask whatIsGround;
+    public bool faceDown;
+
     // Update is called once per frame
     void Update()
     {
-        Ray ray = new Ray(transform.position, transform.forward*-1);
+        Ray ray = new Ray(transform.position, transform.forward*-0.1f);
         RaycastHit hit;
         Debug.DrawRay(ray.origin,ray.direction,Color.red,.01f);
-        if(Physics.Raycast(ray, out hit)){
+        faceDown = Physics.Raycast(ray, out hit, 0.1f,whatIsGround);
+    }
 
-
-        }
-        
+    private void OnTriggerEnter(Collider other) {
+        if(other.CompareTag("Hand")){
+            HandBehaviour.Instance.HitCard(this.gameObject);
+        }   
     }
 }

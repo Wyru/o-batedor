@@ -38,10 +38,21 @@ public class HandBehaviour : MonoBehaviour
 
     public List<GameObject> cards;
 
+    static HandBehaviour _instance;
+
+    public static HandBehaviour Instance{
+        get{
+            return _instance;
+        }
+    }
+
+    public float forceBase;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        _instance = this;
         state = States.Start;
         m_Animator = GetComponent<Animator>();
     }
@@ -136,36 +147,40 @@ public class HandBehaviour : MonoBehaviour
         {
             state = States.Start;
             Debug.Log("Muiiiiito lendo");
-
+            TryFlipCards();
+            cards = new List<GameObject>();
         }
         else if (Input.GetMouseButtonDown(0))
         {
 
             if (progress > 0.66)
             {
-                Debug.Log("Muito cedo");
                 m_Animator.SetTrigger("Click");
             }
             else if (progress > 0.33)
             {
-                Debug.Log("Na hora");
                 m_Animator.SetTrigger("Click");
-
             }
             else
             {
-                Debug.Log("Muito lendo");
                 m_Animator.SetTrigger("Click");
-
             }
+            TryFlipCards();
             state = States.Start;
+            cards = new List<GameObject>();
         }
     }
 
-    
-    private void OnTriggerEnter(Collider other) {
-        if(other.CompareTag("Card")){
-            
-        }   
+    private void TryFlipCards(){
+        foreach (GameObject card in cards)
+        {
+            card.GetComponent<Rigidbody>().AddForceAtPosition(card.transform.forward*-1*forceBase*powerValue,transform.position, ForceMode.Impulse);
+        }
     }
+
+    public void HitCard(GameObject card){
+        cards.Add(card);
+    }
+
+    
 }
