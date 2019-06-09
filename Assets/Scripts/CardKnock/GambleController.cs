@@ -97,6 +97,8 @@ namespace CardKnock
 
         public void StartGamble(bool playerStart)
         {
+            playerBetValue = 0;
+            opponentBetValue = 0;
             gambleAnimator.gameObject.SetActive(true);
             playerStarted = playerStart;
             playerCardsInBet = new List<Database.Card>();

@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 37881101}
   m_Layer: 0
   m_Name: HandSprite
-  m_TagString: Hand
+  m_TagString: HandPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -260,8 +260,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5838267, y: 0.3665422, z: 1.1613387}
-  m_Center: {x: -0.25452536, y: 2.322346, z: -0.22525638}
+  m_Size: {x: 0.5838267, y: 0.6793998, z: 0.64897484}
+  m_Center: {x: -0.25452605, y: 2.4787834, z: 0.17259212}
 --- !u!1 &63077626
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,7 +281,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &63077627
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -413,12 +413,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2e37c1d5a964160439a33a7393d617bf, type: 2}
   - {fileID: 11400000, guid: b1a0b90d42fa88c46a0fab37f4558302, type: 2}
   difficult: 0
-  OnPlayerWin:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnPlayerLost:
+  OnNoCards:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -2374,7 +2369,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &530945136
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2866,7 +2861,7 @@ MonoBehaviour:
   cam: {fileID: 302361121}
   cursorNormal: {fileID: 2800000, guid: 919d146f52d279d48a821543594a5062, type: 3}
   cursorHand: {fileID: 2800000, guid: 0600cc17cc49a90478c2fb693e813e4b, type: 3}
-  cursorMode: 1
+  cursorMode: 0
   hotSpot: {x: 0, y: 0}
   selected: {fileID: 0}
 --- !u!4 &748552121
@@ -4312,7 +4307,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4388,7 +4383,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0.000015258789}
-  m_SizeDelta: {x: 10, y: 10}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1191348813
 MonoBehaviour:
@@ -5350,7 +5345,7 @@ GameObject:
   - component: {fileID: 1576633836}
   m_Layer: 0
   m_Name: Player Hand
-  m_TagString: Hand
+  m_TagString: HandPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5444,7 +5439,7 @@ MonoBehaviour:
   powerIncrement: 2
   speedUp: 1.59
   cards: []
-  forceBase: 3.01
+  forceBase: 4
   forceModifierCurve:
     serializedVersion: 2
     m_Curve:
@@ -5491,8 +5486,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 0.34161383
+      time: 0.0054473877
+      value: 0.98463446
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -5500,8 +5495,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.22735292
-      value: 0.5023652
+      time: 0.034832776
+      value: 0.97045904
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -5527,8 +5522,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.85
-      value: -0.0023624972
+      time: 0.7828003
+      value: 0.981097
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -6764,6 +6759,68 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: {fileID: 0}
   card: {fileID: 0}
+--- !u!1 &1888588493
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1888588494}
+  - component: {fileID: 1888588495}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1888588494
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888588493}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2128979947}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1888588495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888588493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f58ff6edcbc19c46b848160d12b69a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sentences:
+  - text: ah seu maldito
+    characterVoice: {fileID: 11400000, guid: c896b7a5ca7669c43b16dd3393f7dee7, type: 2}
+    speed: 1
+    origin: {fileID: 1192570774}
+  - text: grrrr
+    characterVoice: {fileID: 11400000, guid: c896b7a5ca7669c43b16dd3393f7dee7, type: 2}
+    speed: 1
+    origin: {fileID: 1192570774}
+  OnStartDialogue:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnEndDialogue:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1929920713
 GameObject:
   m_ObjectHideFlags: 0
@@ -7008,7 +7065,7 @@ GameObject:
   - component: {fileID: 1968858308}
   m_Layer: 0
   m_Name: HandSprite
-  m_TagString: Hand
+  m_TagString: HandOpponent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7102,7 +7159,7 @@ GameObject:
   - component: {fileID: 2014682408}
   m_Layer: 0
   m_Name: OpponetHand
-  m_TagString: Hand
+  m_TagString: HandOpponent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7196,7 +7253,7 @@ MonoBehaviour:
   powerIncrement: 2
   speedUp: 1.59
   cards: []
-  forceBase: 3.01
+  forceBase: 3.04
   forceModifierCurve:
     serializedVersion: 2
     m_Curve:
@@ -7293,7 +7350,7 @@ MonoBehaviour:
   forceModifier: 0
   hitModifier: 0
   turnFinished: 0
-  isOpponent: 0
+  isOpponent: 1
 --- !u!95 &2014682409
 Animator:
   serializedVersion: 3
@@ -7671,6 +7728,7 @@ Transform:
   m_Children:
   - {fileID: 2017721192}
   - {fileID: 1192570774}
+  - {fileID: 1888588494}
   m_Father: {fileID: 681054808}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7691,14 +7749,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2e37c1d5a964160439a33a7393d617bf, type: 2}
   - {fileID: 11400000, guid: b1a0b90d42fa88c46a0fab37f4558302, type: 2}
   difficult: 0
-  OnPlayerWin:
+  OnNoCards:
     m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnPlayerLost:
-    m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2128979949}
+        m_MethodName: SetIndex
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2128979949
@@ -7720,6 +7784,24 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 2128979948}
           m_MethodName: Chase
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    action: 0
+    customStage: 0
+  - events:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1888588495}
+          m_MethodName: Play
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

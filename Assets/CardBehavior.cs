@@ -27,17 +27,14 @@ public class CardBehavior : MonoBehaviour
     {
         Ray ray = new Ray(transform.position, transform.forward*-0.1f);
         RaycastHit hit;
-        Debug.DrawRay(ray.origin,ray.direction,Color.red,.01f);
         faceDown = Physics.Raycast(ray, out hit, 0.1f,whatIsGround);
     }
 
     private void OnTriggerEnter(Collider other) {
         if(other.CompareTag("HandPlayer")){
-            Debug.Log(card.name+" Hit by player");
             HandBehaviour.InstancePlayer.HitCard(this.gameObject);
         }   
         if(other.CompareTag("HandOpponent")){
-            Debug.Log(card.name+" Hit by opponent");
             HandBehaviour.InstanceOpponent.HitCard(this.gameObject);
         } 
     }

@@ -5,7 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Card
-  - Hand
+  - HandPlayer
+  - HandOpponent
   layers:
   - Default
   - TransparentFX

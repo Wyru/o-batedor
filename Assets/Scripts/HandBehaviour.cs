@@ -74,10 +74,10 @@ public class HandBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(this.isOpponent)
+        if (this.isOpponent)
             _instanceOpponent = this;
         else _instancePlayer = this;
-        
+
         turnFinished = false;
         m_Animator = GetComponent<Animator>();
     }
@@ -85,6 +85,7 @@ public class HandBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         switch (state)
         {
             case States.Start:
@@ -102,11 +103,12 @@ public class HandBehaviour : MonoBehaviour
                 break;
 
             case States.WaitingEnd:
-                if(AllCardsIdle()){
+                if (AllCardsIdle())
+                {
                     NextTurn();
                 }
 
-            break;
+                break;
         }
 
     }
@@ -114,6 +116,11 @@ public class HandBehaviour : MonoBehaviour
     Vector3 opponentTarget;
     void UpdatePosition()
     {
+
+        if (CardKnock.CardKnockController.Instance.cardsInBet.Count == 0)
+        {
+            return;
+        }
         if (isOpponent)
         {
             int i = Random.Range(0, CardKnock.CardKnockController.Instance.cardsInBet.Count);
@@ -151,7 +158,10 @@ public class HandBehaviour : MonoBehaviour
     void UpdateChargingPower()
     {
 
-
+        if (CardKnock.CardKnockController.Instance.cardsInBet.Count == 0)
+        {
+            return;
+        }
         if (Input.GetMouseButton(0) || opponentMousePressed)
         {
 
@@ -207,7 +217,6 @@ public class HandBehaviour : MonoBehaviour
                             opponentMousePressed = !(Random.Range(0, 10) > 2);
                         }
                         break;
-
                 }
 
 
@@ -299,7 +308,6 @@ public class HandBehaviour : MonoBehaviour
         {
             Vector3 force = card.transform.forward * -1;
             force = force * (0.5f * hitModifier * forceBase) + force * (0.4f * forceModifier * forceBase) + force * (0.4f * forceBase * Random.Range(0.01f, 0.1f));
-            Debug.Log(force);
 
             card.GetComponent<Rigidbody>().AddForceAtPosition(force, transform.position, ForceMode.Impulse);
         }
@@ -315,7 +323,6 @@ public class HandBehaviour : MonoBehaviour
 
     public void StartTurn()
     {
-        Debug.Log("Turn Start " + gameObject.name);
         turnFinished = false;
         hitImpact = false;
         state = States.Start;
@@ -340,10 +347,12 @@ public class HandBehaviour : MonoBehaviour
     }
 
 
-    public bool AllCardsIdle(){
-        foreach (GameObject card in cards)
+    public bool AllCardsIdle()
+    {
+        foreach (CardBehavior card in CardKnock.CardKnockController.Instance.cardsInBet)
         {
-            if(Mathf.Abs(card.GetComponent<Rigidbody>().velocity.magnitude) > 0.05 ){
+            if (Mathf.Abs(card.GetComponent<Rigidbody>().velocity.magnitude) > 0)
+            {
                 return false;
             }
         }
@@ -351,7 +360,7 @@ public class HandBehaviour : MonoBehaviour
         return true;
     }
 
-    
+
 
 
 }

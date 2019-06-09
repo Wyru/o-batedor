@@ -104,6 +104,36 @@ namespace CardKnock
             }
         }
 
+
+        IEnumerator TransitionOut()
+        {
+            transition.SetTrigger("play");
+            float timer = 0;
+            while (true)
+            {
+                timer += Time.deltaTime;
+
+                if (timer >= transitionTime)
+                {
+                    break;
+                }
+                else
+                {
+                    if ((timer / transitionTime) > changeCamTime && camChanged)
+                    {
+                        playerHandBehavior.gameObject.SetActive(false);
+                        opponentHandBehavior.gameObject.SetActive(false);
+                        Cursor.visible = true;
+                        arena.SetActive(false);
+                        SystemsController.RunningCardKnock(false);
+                        ChangeCurrentCam();
+                    }
+                }
+
+                yield return null;
+            }
+        }
+
         public void ChangeCurrentCam()
         {
             camChanged = !camChanged;
@@ -270,13 +300,8 @@ namespace CardKnock
         void GameEnd(){
             player.list = GambleController.Instance.playerCardsInHand;
             opponent.cards = GambleController.Instance.opponentCardsInHand.ToArray();
-            playerHandBehavior.gameObject.SetActive(false);
-            opponentHandBehavior.gameObject.SetActive(false);
-            Cursor.visible = true;
-            arena.SetActive(false);
-            SystemsController.RunningCardKnock(false);
-            ChangeCurrentCam();
-            
+            StartCoroutine("TransitionOut");
+
             if (opponent.cards.Length == 0)
             {
                 opponent.PlayerWin();
