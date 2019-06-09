@@ -47,7 +47,6 @@ namespace CardKnock
             }
         }
 
-
         public void OnMouseEnter()
         {
             if(!isOpponent || isOpponent && !isInHand){

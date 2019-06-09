@@ -21,10 +21,10 @@ namespace CardKnock
 
         CardKnockController cardKnock;
 
-        List<Database.Card> playerCardsInHand;
+        public List<Database.Card> playerCardsInHand;
         List<Database.Card> playerCardsInBet;
 
-        List<Database.Card> opponentCardsInHand;
+        public List<Database.Card> opponentCardsInHand;
         List<Database.Card> opponentCardsInBet;
 
 
@@ -103,7 +103,7 @@ namespace CardKnock
             opponentCardsInBet = new List<Database.Card>();
             playerCardsInBetGUI = new List<CardGamble>();
             opponentCardsInBetGUI = new List<CardGamble>();
-            
+            finished = playerGambled = opponentGambled = gameEnded = false;
 
             playerCardsInHand = new List<Database.Card>(cardKnock.playerCards);
             opponentCardsInHand = new List<Database.Card>(cardKnock.opponentCards);
@@ -113,6 +113,26 @@ namespace CardKnock
 
             playerCardsInHandGUI = new List<CardGamble>();
             opponentCardsInHandGUI = new List<CardGamble>();
+
+            foreach (Transform t in playerHand.transform.GetComponentInChildren<Transform>())
+            {
+                Destroy(t.gameObject);
+            }
+
+            foreach (Transform t in opponentHand.transform.GetComponentInChildren<Transform>())
+            {
+                Destroy(t.gameObject);
+            }
+
+            foreach (Transform t in playerBet.transform.GetComponentInChildren<Transform>())
+            {
+                Destroy(t.gameObject);
+            }
+
+            foreach (Transform t in opponentBet.transform.GetComponentInChildren<Transform>())
+            {
+                Destroy(t.gameObject);
+            }
 
 
             foreach (Database.Card card in playerCardsInHand)
@@ -137,7 +157,7 @@ namespace CardKnock
             {
                 state = States.OpponentGambling;
             }
-            
+
             gameEnded = false;
             finished = false;
 
@@ -177,6 +197,17 @@ namespace CardKnock
                     break;
                 }
             }
+            Database.Card cardH;
+            for (int i = 0; i < playerCardsInHand.Count; i++)
+            {
+                if (card == playerCardsInHand[i])
+                {
+                    cardH = playerCardsInHand[i];
+                    playerCardsInHand.Remove(cardH);
+                    playerCardsInBet.Add(cardH);
+                    break;
+                }
+            }
         }
 
         public void PlayerUnBetCard(Database.Card card)
@@ -192,6 +223,17 @@ namespace CardKnock
                     playerCardsInBetGUI.Remove(cardGamble);
                     cardGamble.transform.SetParent(playerHand.transform);
                     playerCardsInHandGUI.Add(cardGamble);
+                    break;
+                }
+            }
+            Database.Card cardH;
+            for (int i = 0; i < playerCardsInBet.Count; i++)
+            {
+                if (card == playerCardsInBet[i])
+                {
+                    cardH = playerCardsInBet[i];
+                    playerCardsInBet.Remove(cardH);
+                    playerCardsInHand.Add(cardH);
                     break;
                 }
             }
@@ -222,7 +264,7 @@ namespace CardKnock
 
                 case States.EndGambling:
 
-            
+
                     break;
             }
         }
@@ -301,6 +343,8 @@ namespace CardKnock
                             break;
                         }
                     }
+
+
                 }
             }
             else
@@ -311,6 +355,7 @@ namespace CardKnock
                     for (int i = 0; i < 2 && i < opponentCardsInHandGUI.Count; i++)
                     {
                         cards.Add(opponentCardsInHandGUI[i].card);
+
                         opponentBetValue += ((int)opponentCardsInHandGUI[i].card.rarity + 1);
                     }
                 }
@@ -322,6 +367,22 @@ namespace CardKnock
             }
 
             opponentBetValueGUI.SetText(opponentBetValue.ToString());
+
+            List<Database.Card> aux = new List<Database.Card>();
+
+            for (int i = 0; i < opponentCardsInBetGUI.Count; i++)
+            {
+                if (opponentCardsInHand[i] == opponentCardsInBetGUI[i].card)
+                {
+                    aux.Add(opponentCardsInHand[i]);
+                    continue;
+                }
+            }
+
+            foreach (Database.Card card in aux)
+            {
+                opponentCardsInHand.Remove(card);
+            }
 
             EndGambling();
 
@@ -345,11 +406,13 @@ namespace CardKnock
                 }
             }
         }
-        public void Desactive(){
+        public void Desactive()
+        {
             gambleAnimator.gameObject.SetActive(false);
         }
 
-        public void OutAnimationEnd(){
+        public void OutAnimationEnd()
+        {
             finished = true;
             state = States.Nothing;
         }

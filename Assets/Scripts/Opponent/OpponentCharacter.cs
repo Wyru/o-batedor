@@ -15,11 +15,17 @@ public class OpponentCharacter : MonoBehaviour
         Expert
     }
     public Level difficult;
-    public UnityEvent OnPlayerWin;
-    public UnityEvent OnPlayerLost;
+    public UnityEvent OnNoCards;
 
     public void Chase(){
-        CardKnock.CardKnockController.Instance.StartMatch(cards, difficult);
+        CardKnock.CardKnockController.Instance.StartMatch(cards, this);
+    }
+
+
+    public void PlayerWin(){
+        if(OnNoCards != null){
+            OnNoCards.Invoke();
+        }
     }
 
 }

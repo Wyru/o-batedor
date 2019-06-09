@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dark Magician Girl
   m_EditorClassIdentifier: 
   cover: {fileID: 21300000, guid: f9732c5dd847b5848a6226346e30c562, type: 3}
-  front: {fileID: 21300000, guid: 507449b53e26569429be06e36bf69273, type: 3}
+  front: {fileID: 21300000, guid: 86a359bac859506419a9bd4ad9c70c11, type: 3}
   name: Dark Magician Girl
   description: "Este card ganha 300 de ATK para cada \"Mago Negro\" ou \"Mago do Caos
     das Trevas\" no Cemit\xE9rio de qualquer duelista."

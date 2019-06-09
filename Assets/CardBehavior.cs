@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CardBehavior : MonoBehaviour
 {
+    
     Rigidbody m_Rigidbody;
     RaycastHit hit;
     // Start is called before the first frame update
@@ -12,8 +13,14 @@ public class CardBehavior : MonoBehaviour
         m_Rigidbody = GetComponent<Rigidbody>();
     }
 
+    public SpriteRenderer front;
+    public SpriteRenderer cover;
     public LayerMask whatIsGround;
     public bool faceDown;
+
+    public Database.Card card;
+
+    public Transform[] poits;
 
     // Update is called once per frame
     void Update()
@@ -25,8 +32,19 @@ public class CardBehavior : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        if(other.CompareTag("Hand")){
-            HandBehaviour.Instance.HitCard(this.gameObject);
+        if(other.CompareTag("HandPlayer")){
+            Debug.Log(card.name+" Hit by player");
+            HandBehaviour.InstancePlayer.HitCard(this.gameObject);
         }   
+        if(other.CompareTag("HandOpponent")){
+            Debug.Log(card.name+" Hit by opponent");
+            HandBehaviour.InstanceOpponent.HitCard(this.gameObject);
+        } 
+    }
+
+    public void Setup(Database.Card card){
+        this.card = card;
+        front.sprite = card.front;
+        cover.sprite = card.cover;
     }
 }
