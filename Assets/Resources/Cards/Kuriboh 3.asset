@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2280e46d6ae94074f91b43b6646163f8, type: 3}
+  m_Name: Kuriboh 3
+  m_EditorClassIdentifier: 
+  cover: {fileID: 21300000, guid: f547c365da28f17409ee8c61a01d8102, type: 3}
+  front: {fileID: 21300000, guid: 7b44c6fdabc0e6447bac42717480467c, type: 3}
+  name: Coco que caiu do coqueiro
+  description: "Esse monstro diferentemente dos outros que s\xE3o gerados, esses crescem
+    em coqueiros e caem em cima de seus inimigos"
+  rarity: 0
