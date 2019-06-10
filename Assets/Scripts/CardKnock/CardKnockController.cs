@@ -64,6 +64,8 @@ namespace CardKnock
 
         public States state;
 
+        public GameObject Menu;
+
         private void Start()
         {
             _instance = this;
@@ -96,6 +98,7 @@ namespace CardKnock
                     if ((timer / transitionTime) > changeCamTime && !camChanged)
                     {
                         ChangeCurrentCam();
+                        Menu.SetActive(false);
                         state = States.StartGame;
                     }
                 }
@@ -126,6 +129,7 @@ namespace CardKnock
                         Cursor.visible = true;
                         arena.SetActive(false);
                         SystemsController.RunningCardKnock(false);
+                        Menu.SetActive(false);
                         ChangeCurrentCam();
                     }
                 }

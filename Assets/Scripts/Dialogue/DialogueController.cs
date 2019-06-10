@@ -64,7 +64,7 @@ public class DialogueController : MonoBehaviour
 
                 if (sentence.origin != null)
                 {
-                    currentTypewriter.transform.position = cam.WorldToScreenPoint(sentence.origin.position);
+                    currentTypewriter.transform.position = sentence.origin.position;
                 }
                 else
                 {
