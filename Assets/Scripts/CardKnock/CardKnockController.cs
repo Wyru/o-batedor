@@ -129,7 +129,7 @@ namespace CardKnock
                         Cursor.visible = true;
                         arena.SetActive(false);
                         SystemsController.RunningCardKnock(false);
-                        Menu.SetActive(false);
+                        Menu.SetActive(true);
                         ChangeCurrentCam();
                     }
                 }
